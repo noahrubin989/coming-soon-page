@@ -8,22 +8,37 @@ const startCountdown = (dateValue) => {
   let interval = setInterval(() => {
     let now = new Date().getTime();
     let diff = dateValue - now;
-    let d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    let h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    let s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.querySelector("#days").textContent = d;
-    document.querySelector("#hours").textContent = h;
-    document.querySelector("#minutes").textContent = m;
-    document.querySelector("#seconds").textContent = s;
+    const times = [
+      {
+        timeCalculation: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        element: document.querySelector("#days"),
+      },
+      {
+        timeCalculation: Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        element: document.querySelector("#hours"),
+      },
+      {
+        timeCalculation: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+        element: document.querySelector("#minutes"),
+      },
+      {
+        timeCalculation: Math.floor((diff % (1000 * 60)) / 1000),
+        element: document.querySelector("#seconds"),
+      },
+    ];
+
+    times.forEach((period) => {
+      period.element.textContent = period.timeCalculation;
+    });
 
     if (diff < 0) {
       clearInterval(interval);
-      document.querySelector("#days").textContent = "00";
-      document.querySelector("#hours").textContent = "00";
-      document.querySelector("#minutes").textContent = "00";
-      document.querySelector("#seconds").textContent = "00";
+      times.forEach((period) => {
+        period.element.textContent = "00";
+      });
     }
   }, 1000);
 };
