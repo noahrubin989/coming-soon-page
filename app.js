@@ -1,3 +1,8 @@
+import { createCountDownDivs, appendCountDownDivs } from "./js/utils.js";
+
+let countdownDivs = createCountDownDivs();
+appendCountDownDivs(countdownDivs, document.querySelector(".countdown"));
+
 // Encapsulate the interval logic within a function and pass the date value as a parameter.
 const startCountdown = (dateValue) => {
   let interval = setInterval(() => {
@@ -24,5 +29,5 @@ const startCountdown = (dateValue) => {
 };
 
 // Main:
-let targetDate = new Date("Dec 31, 2023 00:00:00").getTime();
+let targetDate = new Date("Jul 31, 2023 00:00:00").getTime();
 startCountdown(targetDate);
