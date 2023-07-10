@@ -104,11 +104,11 @@ p {
 /* Rocket Animation */
 @keyframes rocketAnimation {
   from {
-    opacity: 0.25;
-    top: 100%;
+    opacity: 0.5;
+    top: 60%;
   }
   to {
     opacity: 1;
-    top: 0%;
+    top: -50%;
   }
 }
